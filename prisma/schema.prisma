@@ -14,12 +14,28 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid()) @db.Uuid
-  username   String    @unique @db.VarChar(255)
-  password   String    @db.VarChar(150)
-  balance    Int
-  role       String    @db.VarChar(150)
-  createdAt  DateTime  @default(now())
+  id                    String    @id @default(uuid()) @db.Uuid
+  username              String    @unique @db.VarChar(255)
+  password              String    @db.VarChar(150)
+  balance               Int
+  role                  String    @db.VarChar(150)
+  createdAt             DateTime  @default(now())
+
+  sentTransactions      Transaction[] @relation("FromUser")
+  receivedTransactions  Transaction[] @relation("ToUser")
 
   @@map("users")
+}
+
+model Transaction {
+  id              String    @id @default(uuid()) @db.Uuid
+  fromUserId      String    @db.Uuid
+  toUserId        String    @db.Uuid
+  amount          Int
+  createdAt       DateTime  @default(now())
+
+  fromUser        User    @relation("FromUser", fields: [fromUserId], references: [id])
+  toUser          User    @relation("ToUser", fields: [toUserId], references: [id])
+
+  @@map("transactions")
 }
