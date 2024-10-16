@@ -23,6 +23,7 @@ model User {
 
   sentTransactions      Transaction[] @relation("FromUser")
   receivedTransactions  Transaction[] @relation("ToUser")
+  balanceHistory        BalanceHistory[]
 
   @@map("users")
 }
@@ -38,4 +39,22 @@ model Transaction {
   toUser          User    @relation("ToUser", fields: [toUserId], references: [id])
 
   @@map("transactions")
+}
+
+model BalanceHistory {
+  id              String          @id @default(uuid()) @db.Uuid
+  userId          String          @db.Uuid
+  amount          Int
+  type            TransactionType
+  createdAt       DateTime        @default(now())
+
+  user            User            @relation(fields: [userId], references: [id])
+
+  @@map("balance_history")
+}
+
+enum TransactionType {
+  DEBIT
+  CREDIT
+  TOPUP
 }
