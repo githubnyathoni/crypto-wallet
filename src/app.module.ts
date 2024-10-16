@@ -4,6 +4,7 @@ import { AuthController } from './infrastructure/controllers/auth.controller';
 import { PrismaService } from './infrastructure/database/prisma/prisma.service';
 import { AuthModule } from './infrastructure/modules/auth.module';
 import { UserModule } from './infrastructure/modules/user.module';
+import { UserController } from './infrastructure/controllers/user.controller';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -12,7 +13,7 @@ import { UserModule } from './infrastructure/modules/user.module';
     AuthModule,
     UserModule,
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController],
   providers: [PrismaService],
 })
 export class AppModule {}

@@ -1,7 +1,10 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { IUserRepository } from '../../domain/repositories/user-repository.interface';
 import { PrismaService } from '../database/prisma/prisma.service';
-import { UserResponse } from '../../domain/entities/user.interface';
+import {
+  BalanceResponse,
+  UserResponse,
+} from '../../domain/entities/user.interface';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
 
@@ -39,6 +42,21 @@ export class UserService implements IUserRepository {
     return {
       username: user.username,
       access_token: accessToken,
+    };
+  }
+
+  async getBalance(userId: string): Promise<BalanceResponse> {
+    const user = await this.prismaService.user.findUnique({
+      where: { id: userId },
+      select: { balance: true },
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return {
+      balance: user.balance,
     };
   }
 }
