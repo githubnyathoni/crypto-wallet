@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { BalanceResponse } from 'src/domain/entities/user.interface';
-import { IUserRepository } from 'src/domain/repositories/user-repository.interface';
+import { BalanceResponse } from '../../domain/entities/user.interface';
+import { IUserRepository } from '../../domain/repositories/user-repository.interface';
 
 @Injectable()
 export class GetBalanceUseCase {

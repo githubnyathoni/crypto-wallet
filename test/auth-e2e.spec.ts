@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { TestModule } from './test.module';
 import * as request from 'supertest';
-import { CreateUserDto } from 'src/application/dtos/create-user.dto';
+import { CreateUserDto } from '../src/application/dtos/create-user.dto';
 
 describe('AuthController (e2e)', () => {
   let app: INestApplication;

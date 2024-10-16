@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpException, Injectable } from '@nestjs/common';
 import { IUserRepository } from '../../domain/repositories/user-repository.interface';
 import { PrismaService } from '../database/prisma/prisma.service';
 import {
@@ -52,7 +52,7 @@ export class UserService implements IUserRepository {
     });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new HttpException('User not found', 404);
     }
 
     return {

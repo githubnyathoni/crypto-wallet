@@ -15,7 +15,7 @@ export class TestService {
   }
 
   async createUser() {
-    await this.prismaService.user.create({
+    return await this.prismaService.user.create({
       data: {
         username: 'testing',
         password: await bcrypt.hash('testing', 10),

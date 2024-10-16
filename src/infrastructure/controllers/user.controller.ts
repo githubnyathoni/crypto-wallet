@@ -1,10 +1,10 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { GetBalanceUseCase } from 'src/application/use-cases/get-balance.usecase';
+import { GetBalanceUseCase } from '../../application/use-cases/get-balance.usecase';
 import { JwtAuthGuard } from '../auth/jwt.guards';
 import {
   BalanceResponse,
   UserRequest,
-} from 'src/domain/entities/user.interface';
+} from '../../domain/entities/user.interface';
 
 @Controller('users')
 export class UserController {
