@@ -5,7 +5,7 @@ import { TestService } from './test.service';
 import { TestModule } from './test.module';
 import * as request from 'supertest';
 import { AuthService } from '../src/infrastructure/services/auth.service';
-import { TopUpDto } from 'src/application/dtos/topup.dto';
+import { TopUpDto } from 'src/application/dtos/topup-balance.dto';
 
 describe('UserController (e2e)', () => {
   let app: INestApplication;

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IUserRepository } from '../../domain/repositories/user-repository.interface';
-import { TopUpDto } from '../dtos/topup.dto';
+import { TopUpDto } from '../dtos/topup-balance.dto';
 import { MessageResponse } from '../../domain/entities/web.interface';
 
 @Injectable()

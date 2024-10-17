@@ -7,7 +7,7 @@ import {
 } from '../../domain/entities/user.interface';
 import { TopUpBalanceUseCase } from '../../application/use-cases/topup-balance.usecase';
 import { MessageResponse } from '../../domain/entities/web.interface';
-import { TopUpDto } from '../../application/dtos/topup.dto';
+import { TopUpDto } from '../../application/dtos/topup-balance.dto';
 
 @Controller('users')
 export class UserController {
