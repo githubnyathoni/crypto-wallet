@@ -6,6 +6,6 @@ export class TransferBalanceDto {
   to_username: string;
 
   @IsNumber()
-  @Min(1, { message: 'Transfer amount must be positive' })
+  @Min(1, { message: 'transfer amount must be positive' })
   amount: number;
 }

@@ -6,12 +6,15 @@ import { UserRequest } from '../../domain/entities/user.interface';
 import { BalanceResponse } from '../../domain/entities/wallet.interface';
 import { TopUpDto } from '../../application/dtos/topup-balance.dto';
 import { MessageResponse } from '../../domain/entities/web.interface';
+import { TransferBalanceDto } from 'src/application/dtos/transfer-balance.dto';
+import { TransferBalanceUseCase } from 'src/application/use-cases/transfer-balance.usecase';
 
 @Controller('wallet')
 export class WalletController {
   constructor(
     private getBalanceUseCase: GetBalanceUseCase,
     private topUpBalanceUseCase: TopUpBalanceUseCase,
+    private transferBalanceUseCase: TransferBalanceUseCase,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -37,6 +40,21 @@ export class WalletController {
 
     return {
       message: 'Topup successful',
+    };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('transfer')
+  async transferBalance(
+    @Req() request: UserRequest,
+    @Body() transferBalanceDto: TransferBalanceDto,
+  ): Promise<MessageResponse> {
+    const userId = request.user.userId;
+
+    await this.transferBalanceUseCase.execute(userId, transferBalanceDto);
+
+    return {
+      message: 'Transfer success',
     };
   }
 }
