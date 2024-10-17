@@ -9,10 +9,6 @@ export interface UserResponse {
   access_token?: string;
 }
 
-export interface BalanceResponse {
-  balance: number;
-}
-
 export interface UserJwtPayload {
   userId: string;
   username: string;

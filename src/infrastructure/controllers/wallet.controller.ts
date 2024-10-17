@@ -1,16 +1,14 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { GetBalanceUseCase } from '../../application/use-cases/get-balance.usecase';
-import { JwtAuthGuard } from '../auth/jwt.guards';
-import {
-  BalanceResponse,
-  UserRequest,
-} from '../../domain/entities/user.interface';
 import { TopUpBalanceUseCase } from '../../application/use-cases/topup-balance.usecase';
-import { MessageResponse } from '../../domain/entities/web.interface';
+import { JwtAuthGuard } from '../auth/jwt.guards';
+import { UserRequest } from '../../domain/entities/user.interface';
+import { BalanceResponse } from '../../domain/entities/wallet.interface';
 import { TopUpDto } from '../../application/dtos/topup-balance.dto';
+import { MessageResponse } from '../../domain/entities/web.interface';
 
-@Controller('users')
-export class UserController {
+@Controller('wallet')
+export class WalletController {
   constructor(
     private getBalanceUseCase: GetBalanceUseCase,
     private topUpBalanceUseCase: TopUpBalanceUseCase,

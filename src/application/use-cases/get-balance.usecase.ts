@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { BalanceResponse } from '../../domain/entities/user.interface';
-import { IUserRepository } from '../../domain/repositories/user-repository.interface';
+import { IWalletRepository } from '../../domain/repositories/wallet-repository.interface';
+import { BalanceResponse } from '../../domain/entities/wallet.interface';
 
 @Injectable()
 export class GetBalanceUseCase {
   constructor(
-    @Inject('IUserRepository') private userRepository: IUserRepository,
+    @Inject('IWalletRepository') private walletRepository: IWalletRepository,
   ) {}
 
   async execute(userId: string): Promise<BalanceResponse> {
-    return this.userRepository.getBalance(userId);
+    return this.walletRepository.getBalance(userId);
   }
 }

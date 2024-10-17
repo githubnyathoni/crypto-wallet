@@ -5,9 +5,9 @@ import { TestService } from './test.service';
 import { TestModule } from './test.module';
 import * as request from 'supertest';
 import { AuthService } from '../src/infrastructure/services/auth.service';
-import { TopUpDto } from 'src/application/dtos/topup-balance.dto';
+import { TopUpDto } from '../src/application/dtos/topup-balance.dto';
 
-describe('UserController (e2e)', () => {
+describe('WalletController (e2e)', () => {
   let app: INestApplication;
   let testService: TestService;
   let authService: AuthService;
@@ -33,7 +33,7 @@ describe('UserController (e2e)', () => {
     authService = app.get(AuthService);
   });
 
-  describe('GET /v1/api/users/balance', () => {
+  describe('GET /v1/api/wallet/balance', () => {
     beforeEach(async () => {
       await testService.deleteUser();
     });
@@ -43,7 +43,7 @@ describe('UserController (e2e)', () => {
       const acessToken = authService.generateToken(user);
 
       const response = await request(app.getHttpServer())
-        .get('/v1/api/users/balance')
+        .get('/v1/api/wallet/balance')
         .set('Authorization', `Bearer ${acessToken}`)
         .expect(200);
 
@@ -51,14 +51,14 @@ describe('UserController (e2e)', () => {
     });
   });
 
-  describe('POST /v1/api/users/topup', () => {
+  describe('POST /v1/api/wallet/topup', () => {
     beforeEach(async () => {
       await testService.deleteUser();
     });
 
     it('should be return unauthorized', async () => {
       const response = await request(app.getHttpServer())
-        .post('/v1/api/users/topup')
+        .post('/v1/api/wallet/topup')
         .expect(401);
 
       expect(response.body.message).toBe('Unauthorized');
@@ -72,7 +72,7 @@ describe('UserController (e2e)', () => {
       const acessToken = authService.generateToken(user);
 
       const response = await request(app.getHttpServer())
-        .post('/v1/api/users/topup')
+        .post('/v1/api/wallet/topup')
         .send(topUpDto)
         .set('Authorization', `Bearer ${acessToken}`)
         .expect(400);
@@ -88,7 +88,7 @@ describe('UserController (e2e)', () => {
       const acessToken = authService.generateToken(user);
 
       const response = await request(app.getHttpServer())
-        .post('/v1/api/users/topup')
+        .post('/v1/api/wallet/topup')
         .send(topUpDto)
         .set('Authorization', `Bearer ${acessToken}`)
         .expect(400);
@@ -104,7 +104,7 @@ describe('UserController (e2e)', () => {
       const acessToken = authService.generateToken(user);
 
       const response = await request(app.getHttpServer())
-        .post('/v1/api/users/topup')
+        .post('/v1/api/wallet/topup')
         .send(topUpDto)
         .set('Authorization', `Bearer ${acessToken}`)
         .expect(201);
