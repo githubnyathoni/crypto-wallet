@@ -6,8 +6,8 @@ import { UserRequest } from '../../domain/entities/user.interface';
 import { BalanceResponse } from '../../domain/entities/wallet.interface';
 import { TopUpDto } from '../../application/dtos/topup-balance.dto';
 import { MessageResponse } from '../../domain/entities/web.interface';
-import { TransferBalanceDto } from 'src/application/dtos/transfer-balance.dto';
-import { TransferBalanceUseCase } from 'src/application/use-cases/transfer-balance.usecase';
+import { TransferBalanceDto } from '../../application/dtos/transfer-balance.dto';
+import { TransferBalanceUseCase } from '../../application/use-cases/transfer-balance.usecase';
 
 @Controller('wallet')
 export class WalletController {

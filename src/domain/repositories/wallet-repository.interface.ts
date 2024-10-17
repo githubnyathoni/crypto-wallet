@@ -1,4 +1,4 @@
-import { TransferBalanceDto } from 'src/application/dtos/transfer-balance.dto';
+import { TransferBalanceDto } from '../../application/dtos/transfer-balance.dto';
 import { BalanceResponse } from '../entities/wallet.interface';
 import { MessageResponse } from '../entities/web.interface';
 

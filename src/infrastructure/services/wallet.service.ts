@@ -4,7 +4,7 @@ import { PrismaService } from '../database/prisma/prisma.service';
 import { BalanceHistoryService } from './balance-history.service';
 import { MessageResponse } from '../../domain/entities/web.interface';
 import { BalanceResponse } from '../../domain/entities/wallet.interface';
-import { TransferBalanceDto } from 'src/application/dtos/transfer-balance.dto';
+import { TransferBalanceDto } from '../../application/dtos/transfer-balance.dto';
 
 @Injectable()
 export class WalletService implements IWalletRepository {

@@ -6,18 +6,18 @@ import * as bcrypt from 'bcrypt';
 export class TestService {
   constructor(private prismaService: PrismaService) {}
 
-  async deleteUser() {
+  async deleteUser(username: string) {
     await this.prismaService.user.deleteMany({
       where: {
-        username: 'testing',
+        username,
       },
     });
   }
 
-  async createUser() {
+  async createUser(username: string) {
     return await this.prismaService.user.create({
       data: {
-        username: 'testing',
+        username,
         password: await bcrypt.hash('testing', 10),
         role: 'user',
         balance: 0,
@@ -25,10 +25,21 @@ export class TestService {
     });
   }
 
-  async findUser() {
+  async findUser(username: string) {
     return await this.prismaService.user.findUnique({
       where: {
+        username,
+      },
+    });
+  }
+
+  async topUpBalanceUser() {
+    return await this.prismaService.user.update({
+      where: {
         username: 'testing',
+      },
+      data: {
+        balance: 10000,
       },
     });
   }

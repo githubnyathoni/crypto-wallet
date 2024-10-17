@@ -32,7 +32,7 @@ describe('AuthController (e2e)', () => {
 
   describe('POST /v1/api/auth/register', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteUser('testing');
     });
 
     it('should be rejected if request is invalid', async () => {
@@ -66,7 +66,7 @@ describe('AuthController (e2e)', () => {
     });
 
     it('should be rejected if email already exists', async () => {
-      await testService.createUser();
+      await testService.createUser('testing');
 
       const registerDto: CreateUserDto = {
         username: 'testing',

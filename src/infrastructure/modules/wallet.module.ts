@@ -5,7 +5,7 @@ import { BalanceHistoryModule } from './balance-history.module';
 import { GetBalanceUseCase } from '../../application/use-cases/get-balance.usecase';
 import { TopUpBalanceUseCase } from '../../application/use-cases/topup-balance.usecase';
 import { WalletController } from '../controllers/wallet.controller';
-import { TransferBalanceUseCase } from 'src/application/use-cases/transfer-balance.usecase';
+import { TransferBalanceUseCase } from '../../application/use-cases/transfer-balance.usecase';
 
 @Module({
   imports: [BalanceHistoryModule],

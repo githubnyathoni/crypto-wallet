@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IWalletRepository } from 'src/domain/repositories/wallet-repository.interface';
+import { IWalletRepository } from '../../domain/repositories/wallet-repository.interface';
 import { TransferBalanceDto } from '../dtos/transfer-balance.dto';
-import { MessageResponse } from 'src/domain/entities/web.interface';
+import { MessageResponse } from '../../domain/entities/web.interface';
 
 @Injectable()
 export class TransferBalanceUseCase {
