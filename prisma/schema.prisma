@@ -35,8 +35,8 @@ model Transaction {
   amount          Int
   createdAt       DateTime  @default(now())
 
-  fromUser        User    @relation("FromUser", fields: [fromUserId], references: [id])
-  toUser          User    @relation("ToUser", fields: [toUserId], references: [id])
+  fromUser        User    @relation("FromUser", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUser          User    @relation("ToUser", fields: [toUserId], references: [id], onDelete: Cascade)
 
   @@map("transactions")
 }
