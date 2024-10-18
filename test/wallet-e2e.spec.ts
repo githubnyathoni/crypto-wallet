@@ -34,6 +34,11 @@ describe('WalletController (e2e)', () => {
     authService = app.get(AuthService);
   });
 
+  afterAll(async () => {
+    await testService.deleteUser('testing');
+    await app.close();
+  });
+
   describe('GET /v1/api/wallet/balance', () => {
     beforeEach(async () => {
       await testService.deleteUser('testing');
