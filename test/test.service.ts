@@ -43,4 +43,18 @@ export class TestService {
       },
     });
   }
+
+  async createTransaction(
+    fromUserId: string,
+    toUserId: string,
+    amount: number,
+  ) {
+    return await this.prismaService.transaction.create({
+      data: {
+        fromUserId,
+        toUserId,
+        amount,
+      },
+    });
+  }
 }
