@@ -6,7 +6,7 @@ import { TestModule } from './test.module';
 import * as request from 'supertest';
 import { AuthService } from '../src/infrastructure/services/auth.service';
 import { TopUpDto } from '../src/application/dtos/topup-balance.dto';
-import { TransferBalanceDto } from 'src/application/dtos/transfer-balance.dto';
+import { TransferBalanceDto } from '../src/application/dtos/transfer-balance.dto';
 
 describe('WalletController (e2e)', () => {
   let app: INestApplication;

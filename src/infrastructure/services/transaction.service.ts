@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { ITransactionRepository } from 'src/domain/repositories/transaction-repository.interface';
+import { ITransactionRepository } from '../../domain/repositories/transaction-repository.interface';
 import { PrismaService } from '../database/prisma/prisma.service';
-import { TopTransactions } from 'src/domain/entities/transaction.interface';
+import { TopTransactions } from '../../domain/entities/transaction.interface';
 
 @Injectable()
 export class TransactionService implements ITransactionRepository {

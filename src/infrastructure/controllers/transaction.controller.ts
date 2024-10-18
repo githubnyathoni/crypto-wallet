@@ -1,8 +1,8 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { GetTopTransactionsUseCase } from 'src/application/use-cases/get-top-transactions.usecase';
+import { GetTopTransactionsUseCase } from '../../application/use-cases/get-top-transactions.usecase';
 import { JwtAuthGuard } from '../auth/jwt.guards';
-import { UserRequest } from 'src/domain/entities/user.interface';
-import { TopTransactions } from 'src/domain/entities/transaction.interface';
+import { UserRequest } from '../../domain/entities/user.interface';
+import { TopTransactions } from '../../domain/entities/transaction.interface';
 
 @Controller('transaction')
 export class TransactionController {

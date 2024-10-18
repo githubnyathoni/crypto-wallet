@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { TopTransactions } from 'src/domain/entities/transaction.interface';
-import { ITransactionRepository } from 'src/domain/repositories/transaction-repository.interface';
+import { TopTransactions } from '../../domain/entities/transaction.interface';
+import { ITransactionRepository } from '../../domain/repositories/transaction-repository.interface';
 
 @Injectable()
 export class GetTopTransactionsUseCase {
