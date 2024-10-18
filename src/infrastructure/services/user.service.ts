@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpException, Injectable } from '@nestjs/common';
 import { IUserRepository } from '../../domain/repositories/user-repository.interface';
 import { PrismaService } from '../database/prisma/prisma.service';
 import { UserResponse } from '../../domain/entities/user.interface';
@@ -33,6 +33,31 @@ export class UserService implements IUserRepository {
         role: 'user',
       },
     });
+
+    const accessToken = this.authService.generateToken(user);
+
+    return {
+      username: user.username,
+      access_token: accessToken,
+    };
+  }
+
+  async login(username: string, password: string): Promise<UserResponse> {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('Account not found', 404);
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new HttpException('Password is not valid', 401);
+    }
 
     const accessToken = this.authService.generateToken(user);
 

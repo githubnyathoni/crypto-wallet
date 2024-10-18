@@ -3,6 +3,7 @@ import { PrismaService } from '../database/prisma/prisma.service';
 import { UserService } from '../services/user.service';
 import { AuthModule } from './auth.module';
 import { RegisterUserUseCase } from '../../application/use-cases/register-user.usecase';
+import { LoginUserUseCase } from '../../application/use-cases/login-user.usecase';
 
 @Module({
   imports: [forwardRef(() => AuthModule)],
@@ -10,12 +11,13 @@ import { RegisterUserUseCase } from '../../application/use-cases/register-user.u
     PrismaService,
     UserService,
     RegisterUserUseCase,
+    LoginUserUseCase,
     {
       provide: 'IUserRepository',
       useClass: UserService,
     },
   ],
   controllers: [],
-  exports: [RegisterUserUseCase],
+  exports: [RegisterUserUseCase, LoginUserUseCase],
 })
 export class UserModule {}
