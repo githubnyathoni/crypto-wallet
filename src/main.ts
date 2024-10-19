@@ -2,8 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
-let cachedApp = null;
-
 export const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
 
@@ -17,7 +15,7 @@ export const bootstrap = async () => {
   );
   app.enableCors();
 
-  await app.listen(3000);
+  await app.listen(8080);
 
   return app;
 };
@@ -26,3 +24,4 @@ export default async function handler(req: any, res: any) {
   const appInstance = await bootstrap();
   return appInstance.getHttpServer()(req, res);
 }
+bootstrap();
