@@ -6,7 +6,7 @@ let app;
 
 export const bootstrap = async () => {
   if (!app) {
-    const app = await NestFactory.create(AppModule);
+    app = await NestFactory.create(AppModule);
 
     app.setGlobalPrefix('/v1/api');
     app.useGlobalPipes(
