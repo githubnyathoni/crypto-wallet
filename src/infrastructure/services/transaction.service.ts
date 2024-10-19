@@ -10,7 +10,11 @@ import { TopUsers } from '../../domain/entities/top-user.interface';
 
 @Injectable()
 export class TransactionService implements ITransactionRepository {
-  constructor(private prismaService: PrismaService) {}
+  private prismaService: PrismaService;
+
+  constructor() {
+    this.prismaService = PrismaService.getInstance();
+  }
 
   async getTopTransactionsByUserId(
     userId: string,

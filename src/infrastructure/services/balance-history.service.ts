@@ -5,7 +5,11 @@ import { TransactionType } from '@prisma/client';
 
 @Injectable()
 export class BalanceHistoryService implements IBalanceHistoryRepository {
-  constructor(private prismaService: PrismaService) {}
+  private prismaService: PrismaService;
+
+  constructor() {
+    this.prismaService = PrismaService.getInstance();
+  }
 
   async create(
     userId: string,

@@ -11,7 +11,9 @@ export class WalletService implements IWalletRepository {
   constructor(
     private prismaService: PrismaService,
     private balanceHistoryService: BalanceHistoryService,
-  ) {}
+  ) {
+    this.prismaService = PrismaService.getInstance();
+  }
 
   async getBalance(userId: string): Promise<BalanceResponse> {
     const user = await this.prismaService.user.findUnique({

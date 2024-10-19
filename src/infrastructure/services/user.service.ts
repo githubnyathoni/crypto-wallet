@@ -7,10 +7,11 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class UserService implements IUserRepository {
-  constructor(
-    private prismaService: PrismaService,
-    private authService: AuthService,
-  ) {}
+  private prismaService: PrismaService;
+
+  constructor(private authService: AuthService) {
+    this.prismaService = PrismaService.getInstance();
+  }
 
   async register(username: string, password: string): Promise<UserResponse> {
     const existingUser = await this.prismaService.user.findUnique({
