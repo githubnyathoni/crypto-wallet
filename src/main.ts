@@ -23,8 +23,6 @@ export const bootstrap = async () => {
 };
 
 export default async function handler(req: any, res: any) {
-  if (!cachedApp) {
-    cachedApp = await bootstrap();
-  }
-  return cachedApp(req, res);
+  const appInstance = await bootstrap();
+  return appInstance.getHttpServer()(req, res);
 }
