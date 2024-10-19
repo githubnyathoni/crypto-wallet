@@ -1,5 +1,9 @@
 import { TopUsers } from '../entities/top-user.interface';
-import { TopTransactions } from '../entities/transaction.interface';
+import {
+  TopTransactions,
+  TransactionsResponse,
+  TransactionsFilter,
+} from '../entities/transaction.interface';
 
 export interface ITransactionRepository {
   getTopTransactionsByUserId(
@@ -7,4 +11,5 @@ export interface ITransactionRepository {
     limit: number,
   ): Promise<TopTransactions[]>;
   getTopUsers(): Promise<TopUsers[]>;
+  getTransactions(filters: TransactionsFilter): Promise<TransactionsResponse>;
 }

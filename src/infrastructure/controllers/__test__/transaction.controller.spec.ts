@@ -3,6 +3,7 @@ import { GetTopUsersUseCase } from '../../../application/use-cases/get-top-users
 import { ITransactionRepository } from '../../../domain/repositories/transaction-repository.interface';
 import { TransactionController } from '../../../infrastructure/controllers/transaction.controller';
 import { GetTopTransactionsUseCase } from '../../../application/use-cases/get-top-transactions.usecase';
+import { GetTransactionsUseCase } from '../../../application/use-cases/get-transactions.usecase';
 
 describe('TransactionController', () => {
   let transactionController: TransactionController;
@@ -14,6 +15,7 @@ describe('TransactionController', () => {
       { username: 'jane_doe', transacted_value: 4000 },
     ]),
     getTopTransactionsByUserId: jest.fn(),
+    getTransactions: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -22,6 +24,7 @@ describe('TransactionController', () => {
       providers: [
         GetTopUsersUseCase,
         GetTopTransactionsUseCase,
+        GetTransactionsUseCase,
         {
           provide: 'ITransactionRepository',
           useValue: mockTransactionRepository,

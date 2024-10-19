@@ -4,6 +4,7 @@ import { TransactionService } from '../services/transaction.service';
 import { GetTopTransactionsUseCase } from '../../application/use-cases/get-top-transactions.usecase';
 import { TransactionController } from '../controllers/transaction.controller';
 import { GetTopUsersUseCase } from '../../application/use-cases/get-top-users.usecase';
+import { GetTransactionsUseCase } from '../../application/use-cases/get-transactions.usecase';
 
 @Module({
   providers: [
@@ -11,12 +12,18 @@ import { GetTopUsersUseCase } from '../../application/use-cases/get-top-users.us
     PrismaService,
     GetTopTransactionsUseCase,
     GetTopUsersUseCase,
+    GetTransactionsUseCase,
     {
       provide: 'ITransactionRepository',
       useClass: TransactionService,
     },
   ],
   controllers: [TransactionController],
-  exports: [TransactionService, GetTopTransactionsUseCase, GetTopUsersUseCase],
+  exports: [
+    TransactionService,
+    GetTopTransactionsUseCase,
+    GetTopUsersUseCase,
+    GetTransactionsUseCase,
+  ],
 })
 export class TransactionModule {}
