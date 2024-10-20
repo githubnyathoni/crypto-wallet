@@ -18,7 +18,7 @@ export const bootstrap = async () => {
     );
     app.enableCors();
 
-    await app.init();
+    await app.listen(3000);
   }
 
   return app;
@@ -26,6 +26,7 @@ export const bootstrap = async () => {
 
 export default async function handler(req: any, res: any) {
   const appInstance = await bootstrap();
+
   return appInstance.getHttpAdapter().getInstance()(req, res);
 }
 bootstrap();
