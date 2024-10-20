@@ -131,10 +131,20 @@ export class TransactionService implements ITransactionRepository {
 
     const totalTransactions = await this.prismaService.transaction.count({
       where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
+        AND: [
+          filters.sender
+            ? { fromUser: { username: { contains: filters.sender } } }
+            : {},
+          filters.receiver
+            ? { toUser: { username: { contains: filters.receiver } } }
+            : {},
+          {
+            createdAt: {
+              gte: startDate,
+              lte: endDate,
+            },
+          },
+        ],
       },
     });
 
