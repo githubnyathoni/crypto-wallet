@@ -60,6 +60,10 @@ export class UserService implements IUserRepository {
       throw new HttpException('Password is not valid', 401);
     }
 
+    if (user.role !== 'admin') {
+      throw new HttpException(' You don’t have permission to access', 403);
+    }
+
     const accessToken = this.authService.generateToken(user);
 
     return {
