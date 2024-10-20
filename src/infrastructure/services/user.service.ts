@@ -61,7 +61,10 @@ export class UserService implements IUserRepository {
     }
 
     if (user.role !== 'admin') {
-      throw new HttpException(' You don’t have permission to access', 403);
+      throw new HttpException(
+        'You do not have permission to access this resource.',
+        403,
+      );
     }
 
     const accessToken = this.authService.generateToken(user);

@@ -10,6 +10,8 @@ import { TopUsers } from '../../domain/entities/top-user.interface';
 import { GetTopUsersUseCase } from '../../application/use-cases/get-top-users.usecase';
 import { GetTransactionsUseCase } from '../../application/use-cases/get-transactions.usecase';
 import { GetTransactionsDto } from '../../application/dtos/get-transactions.dto';
+import { RolesGuard } from '../auth/roles.guards';
+import { Roles } from '../auth/roles.decorators';
 
 @Controller('transaction')
 export class TransactionController {
@@ -35,7 +37,8 @@ export class TransactionController {
     return await this.getTopUsersUseCase.execute();
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   @Get('list')
   async getTransactions(
     @Query() filters: GetTransactionsDto,
