@@ -12,7 +12,9 @@ import { GetTransactionsUseCase } from '../../application/use-cases/get-transact
 import { GetTransactionsDto } from '../../application/dtos/get-transactions.dto';
 import { RolesGuard } from '../auth/roles.guards';
 import { Roles } from '../auth/roles.decorators';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Transaction')
 @Controller('transaction')
 export class TransactionController {
   constructor(
@@ -23,6 +25,11 @@ export class TransactionController {
 
   @UseGuards(JwtAuthGuard)
   @Get('top_transactions')
+  @ApiOperation({ summary: 'Get Top Transactions of the user' })
+  @ApiResponse({
+    status: 200,
+    description: 'Get Top Transactions Data successfully',
+  })
   async getTopTransactions(
     @Req() request: UserRequest,
   ): Promise<TopTransactions[]> {
@@ -33,6 +40,11 @@ export class TransactionController {
 
   @UseGuards(JwtAuthGuard)
   @Get('top_users')
+  @ApiOperation({ summary: 'Get Top Users of the transactions' })
+  @ApiResponse({
+    status: 200,
+    description: 'Get Top Users Transactions Data successfully',
+  })
   async getTopUsers(): Promise<TopUsers[]> {
     return await this.getTopUsersUseCase.execute();
   }
@@ -40,6 +52,11 @@ export class TransactionController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   @Get('list')
+  @ApiOperation({ summary: 'Get Transactions list with filter' })
+  @ApiResponse({
+    status: 200,
+    description: 'Get Transactions Data successfully',
+  })
   async getTransactions(
     @Query() filters: GetTransactionsDto,
   ): Promise<TransactionsResponse> {

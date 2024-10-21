@@ -8,7 +8,9 @@ import { TopUpDto } from '../../application/dtos/topup-balance.dto';
 import { MessageResponse } from '../../domain/entities/web.interface';
 import { TransferBalanceDto } from '../../application/dtos/transfer-balance.dto';
 import { TransferBalanceUseCase } from '../../application/use-cases/transfer-balance.usecase';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Wallet')
 @Controller('wallet')
 export class WalletController {
   constructor(
@@ -19,6 +21,11 @@ export class WalletController {
 
   @UseGuards(JwtAuthGuard)
   @Get('balance')
+  @ApiOperation({ summary: 'Get balance of the user' })
+  @ApiResponse({
+    status: 200,
+    description: 'User created successfully',
+  })
   async getBalance(@Req() request: UserRequest): Promise<BalanceResponse> {
     const userId = request.user.userId;
     const { balance } = await this.getBalanceUseCase.execute(userId);
@@ -30,6 +37,11 @@ export class WalletController {
 
   @UseGuards(JwtAuthGuard)
   @Post('topup')
+  @ApiOperation({ summary: 'Top up balance user' })
+  @ApiResponse({
+    status: 201,
+    description: 'Topup successful',
+  })
   async topUpBalance(
     @Req() request: UserRequest,
     @Body() topUpDto: TopUpDto,
@@ -45,6 +57,15 @@ export class WalletController {
 
   @UseGuards(JwtAuthGuard)
   @Post('transfer')
+  @ApiOperation({ summary: 'Transfer balance for another user' })
+  @ApiResponse({
+    status: 201,
+    description: 'Transfer success',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Destination user not found',
+  })
   async transferBalance(
     @Req() request: UserRequest,
     @Body() transferBalanceDto: TransferBalanceDto,
