@@ -110,6 +110,8 @@ The API provides the following key endpoints:
 - Wallet: `/v1/api/wallet/topup`, `/v1/api/wallet/transfer`
 - Transactions: `/v1/api/transaction/top_users`, `/v1/api/transaction/top_transactions`, `/v1/api/transaction/list`
 
+Refer to the detailed API documentation available at [API Docs](http://108.174.48.153:3000/v1/docs).
+
 ### Testing
 
 ```bash
